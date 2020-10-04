@@ -1,53 +1,69 @@
-const MODERN_ACTIVITY = 15;
-const HALF_LIFE_PERIOD = 5730;
+function createDreamTeam(members) {
+  let result = [];
+  let temp = [];
 
-function dateSample(sampleActivity) {
-    if ((typeof (sampleActivity) !== 'string') || (typeof (sampleActivity) === 'undefined')) {
-        // console.log(typeof (sampleActivity));
-         console.log('false');
+  if (Array.isArray(members)) {
+
+
+    members.forEach(element => {
+      if (typeof (element) === 'string') {
+        temp.push(element.trim().toLocaleUpperCase());
+      } else {
         return false;
-      } else if (!isNaN(sampleActivity) && (sampleActivity > 0)) {
-        let k = Math.LN2 / HALF_LIFE_PERIOD;
-        let t = Math.round(Math.log(MODERN_ACTIVITY / sampleActivity) / k);
-        if ((t === Infinity) || (t === undefined) || (t < 0) ) {
-            console.log('false');
-          return false;
-        } else {
-          //console.log(sampleActivity);
-           console.log(t);
-          return t;
-        }
-    
       }
-      console.log('false');
-      return false;
-    }
+    });
+    temp = temp.sort();
+    temp.forEach(element => {
 
-// dateSample(3);
-// dateSample(3.312312);
-// dateSample(false);
-// dateSample(null);
-// dateSample(undefined);
-// dateSample([3]);
-// dateSample(['3']);
-// dateSample({
-//     '3.14': '3dec'
-// });
-// dateSample();
-// dateSample('ACTIVITY OVER 9000');
-// dateSample('one');
-// dateSample('');
-// dateSample(' ');
-// dateSample(' \n\t\r');
-// dateSample('1');
-// dateSample('3');
-// dateSample('1');
-// dateSample('9');
-// dateSample('11');
+      if ((typeof (element) === 'string') && (element.trim() !== '')) {
+        //element.slice(1,element.length-1);
+        result += element.trim().slice(0, 1).toLocaleUpperCase();
+      } else {
+        return false;
+      }
 
 
-dateSample('9000');
-dateSample('15.1');
-dateSample('0');
-dateSample('-5');
-dateSample('-55.8');
+    });
+    console.log(result);
+    return result;
+  } else {
+    return false;
+  }
+};
+// createDreamTeam(['Peter', 'Adam', 'Gary', 'Bobby', 'Philip', 'Andrea', 'Evelyn', 'Evelyn', 'Kimberly', 'Denise']);
+// createDreamTeam([
+//   'Amelia',
+//   'Grace',
+//   'Lily',
+//   'Ruby',
+// ]);
+
+// createDreamTeam([
+//   '   William Alston ',
+//   ' Paul Benacerraf',
+//   '  Ross Cameron',
+//   '       Gilles Deleuze',
+//   '  Arda Denkel ',
+//   '  Michael Devitt',
+//   '  Kit Fine',
+//   ' Nelson Goodman',
+//   'David Kolb',
+//   '   Saul Kripke',
+//   '  Trenton Merricks',
+//   '  Jay Rosenberg',
+// ]);
+
+
+createDreamTeam([
+  ['David Abram'],
+  ['Robin Attfield'],
+  'Thomas Berry',
+  ['Paul R.Ehrlich'],
+  'donna Haraway',
+  ' BrIaN_gOodWiN  ',
+  {
+    0: 'Serenella Iovino'
+  },
+  'Erazim Kohak',
+  '  val_plumwood',
+]);
